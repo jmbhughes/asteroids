@@ -108,23 +108,19 @@ fn get_random_point() -> Vec2 {
 
 fn setup(
   mut commands: Commands,
-  mut windows: ResMut<Windows>,
   mut meshes: ResMut<Assets<Mesh>>,
   mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
-  let window = windows.get_primary_mut().unwrap();
-  window.set_resolution(VIEWPORT_WIDTH as f32, VIEWPORT_HEIGHT as f32);
 
-  commands.spawn_bundle(Camera2dBundle::default());
+  commands.spawn(Camera2dBundle::default());
 
   commands
-    .spawn()
-    .insert(Starship {
+    .spawn(Starship {
       rotation_angle: 0.0,
     })
     .insert(Position(Vec2::splat(0.0)))
     .insert(Velocity(Vec2::splat(0.0)))
-    .insert_bundle(MaterialMesh2dBundle {
+    .insert(MaterialMesh2dBundle {
       mesh: meshes.add(create_starship_mesh()).into(),
       transform: Transform::default()
         .with_scale(Vec3::splat(50.0))
@@ -136,13 +132,12 @@ fn setup(
 
   for _ in 0..6 {
     commands
-      .spawn()
-      .insert(Asteroid {
+      .spawn(Asteroid {
         size: AsteroidSize::Big,
       })
       .insert(Position(get_random_point()))
       .insert(Velocity(get_random_point().normalize() * ASTEROID_VELOCITY))
-      .insert_bundle(MaterialMesh2dBundle {
+      .insert(MaterialMesh2dBundle {
         mesh: meshes.add(Mesh::from(shape::Circle::default())).into(),
         transform: Transform::default()
           .with_translation(Vec3::new(0.0, 0.0, 2.0)),
@@ -225,15 +220,14 @@ fn keyboard_events(
         (evt.state, evt.key_code)
       {
         commands
-          .spawn()
-          .insert(Bullet {
+          .spawn(Bullet {
             start: starship_position.0.clone(),
           })
           .insert(Position(starship_position.0.clone()))
           .insert(Velocity(
             starship.direction().normalize() * BULLET_VELOCITY,
           ))
-          .insert_bundle(MaterialMesh2dBundle {
+          .insert(MaterialMesh2dBundle {
             mesh: meshes.add(Mesh::from(shape::Circle::default())).into(),
             transform: Transform::default()
               .with_scale(Vec3::splat(5.0))
@@ -318,15 +312,14 @@ fn detect_bullet_asteroid_collision(
         if let Some(asteroid_new_size) = asteroid_new_size {
           for _ in 0..2 {
             commands
-              .spawn()
-              .insert(Asteroid {
+              .spawn(Asteroid {
                 size: asteroid_new_size,
               })
               .insert(Position(asteroid_position.0.clone()))
               .insert(Velocity(
                 get_random_point().normalize() * ASTEROID_VELOCITY,
               ))
-              .insert_bundle(MaterialMesh2dBundle {
+              .insert(MaterialMesh2dBundle {
                 mesh: meshes.add(Mesh::from(shape::Circle::default())).into(),
                 transform: Transform::default()
                   .with_translation(Vec3::new(0.0, 0.0, 2.0)),

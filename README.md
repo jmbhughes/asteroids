@@ -12,9 +12,10 @@ Based on [this tutorial](https://github.com/yishn/lets-code/tree/main/asteroids)
 
 ## New features added already
 - Converted to Bevy 0.10
+- Fixed bullet bug where the bullet first shows up in the center of the screen
+
 
 ## Roadmap
-- Fix bullet bug where the bullet first shows up in the center of the screen
 - Allow lives for the ship
 - Add menus
 - Keep a high score (longest duration plus asteroids shot or something)

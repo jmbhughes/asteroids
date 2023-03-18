@@ -231,7 +231,7 @@ fn keyboard_events(
             mesh: meshes.add(Mesh::from(shape::Circle::default())).into(),
             transform: Transform::default()
               .with_scale(Vec3::splat(5.0))
-              .with_translation(Vec3::splat(0.0)),
+              .with_translation(starship_position.0.clone().extend(0.0)),
             material: materials
               .add(ColorMaterial::from(Color::rgba(1.0, 1.0, 1.0, 1.0))),
             ..default()

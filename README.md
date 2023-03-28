@@ -1,7 +1,7 @@
 # asteroids
 asteroids spin-off in Rust
 
-I'm using this project to learn Rust. 
+I'm using this project [to learn Rust](https://publish.obsidian.md/arbor/learning+rust). 
 
 Based on [this tutorial](https://github.com/yishn/lets-code/tree/main/asteroids). 
 

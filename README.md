@@ -16,7 +16,6 @@ Based on [this tutorial](https://github.com/yishn/lets-code/tree/main/asteroids)
 - Added start menu and settings menus (followed [this example](https://github.com/bevyengine/bevy/blob/release-0.10.0/examples/games/game_menu.rs))
 
 ## Roadmap
-- Clean up code! It's currently all one messy file. 
 - Allow lives for the ship
 - Add pause menu
 - Return to menu on death
